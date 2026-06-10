@@ -1,0 +1,116 @@
+[
+  {
+    "id": "2034271780185137152",
+    "label": "",
+    "score": 10,
+    "problemConfig": {
+      "solutionVisible": false,
+      "multipleFileProblemConfig": {
+        "memoryLimit": 32768,
+        "cpuCount": 1,
+        "template": "GENERAL",
+        "files": [
+          {
+            "path": "main.sh",
+            "directory": false
+          },
+          {
+            "path": "src/",
+            "directory": true
+          },
+          {
+            "path": "src/main.asm",
+            "directory": false
+          }
+        ],
+        "judgeZip": "b056ba58-b693-4265-9b93-886fa0be66b3.zip",
+        "originalScore": 10,
+        "compiles": [
+          "GCC"
+        ],
+        "tools": [
+          "MAKE"
+        ],
+        "withLocalhostNetwork": false,
+        "fileContents": {
+          "src/main.asm": ";本题要求:\r\ncomment %\r\n以下程序的功能是从键盘输入一个大写英文字母c，\r\n再输出c至′Z′的所有字母\r\n例如：输入X，则应该输出XYZ\r\n;请把以下代码补充完整\r\n%\r\ncode segment\r\nassume cs:code\r\nmain:\r\n;请在#1_begin和#1_end之间补充代码实现以下功能:\r\n;从键盘输入一个大写英文字母c，再输出c至′Z′的所有字母\r\n;#1_begin-------------------------------------\r\n\r\n;#1_end=======================================\r\nexit:\r\n   mov ah, 4Ch\r\n   int 21h\r\ncode ends\r\nend main\r\n"
+        },
+        "timeLimit": 31000
+      },
+      "answerVisible": false
+    },
+    "deadline": "1970-01-01T00:00:00Z",
+    "title": "practice_asm_多文件_函数_001_输入一个大写英文字母，输出该字母至'Z'的所有字母",
+    "content": "这是一个多文件编程题的样例。请在这里写题目描述。\n",
+    "type": "MULTIPLE_FILE",
+    "author": "blackwhite",
+    "difficulty": 0,
+    "compiler": "NO_COMPILER",
+    "problemStatus": "PRIVATE",
+    "lastSubmissionId": "0",
+    "solution": "",
+    "problemSetId": "2034271646508474368",
+    "problemId": "1890397358576418816",
+    "description": "# 一. 题目描述\n$\\Large\\color{008080}1.$ 本题要求从键盘输入一个大写英文字母$\\color{C00000}c$，再输出$\\color{C00000}c$至$\\color{008080}\\tt{'Z'}$的所有字母\n\n$\\Large\\color{008080}2.$ 输入字符请调用$\\color{C00000}\\underline{int ~21h}$的$\\color{008080}1$号功能\n\n$\\Large\\color{008080}3.$ 输出字符请调用$\\color{C00000}\\underline{int ~21h}$的$\\color{008080}2$号功能\n\n# 二. 输入输出样例 \n$\\Large\\color{008080}1.$ 输入样例\n$\\large\\color{C00000}\\tt\\underline{X}$<br>\n$\\Large\\color{008080}2.$ 输出样例  \n$\\large\\tt{XYZ}$\n\n# 三. 提交步骤\n$\\large\\char\"2460$ 复制以下源程序内容\n```x86asm\n;本题要求:\ncomment %\n以下程序的功能是从键盘输入一个大写英文字母c，\n再输出c至′Z′的所有字母\n例如：输入X，则应该输出XYZ\n;请把以下代码补充完整\n%\ncode segment\nassume cs:code\nmain:\n;请在#1_begin和#1_end之间补充代码实现以下功能:\n;从键盘输入一个大写英文字母c，再输出c至′Z′的所有字母\n;#1_begin-------------------------------------\n\n;#1_end=======================================\nexit:\n   mov ah, 4Ch\n   int 21h\ncode ends\nend main\n```\n$\\large\\char\"2461$ 在桌面空白处，点右键$\\rightarrow$新建$\\rightarrow$文本文档，并把此文件重命名设为$\\underline{\\color{008080}s.asm}$\n$\\large\\char\"2462$ 用$\\color{C00000}editplus$打开$s.asm$\n$\\large\\char\"2463$ 把步骤$\\large\\char\"2460$复制的内容粘贴到$editplus$内\n$\\large\\char\"2464$ 在$editplus$中对代码进行完善，注意完善代码时切勿删除$\\color{#C000C0}\\underline{;\\#1\\_begin}$、$\\color{#C000C0}\\underline{;\\#1\\_end}$标记\n$\\large\\char\"2465$ 保存$s.asm$并在$XP$或$Bochs$虚拟机中编译、调试$s.asm$\n$\\large\\char\"2466$ 复制$s.asm$的内容到提交框内，点“$\\underline{\\color{C00000}\\tt{提交本题作答}}$”按钮 \n\n\n\n",
+    "problemPoolIndex": 1,
+    "indexInProblemPool": 1,
+    "authorOrganizationId": "1"
+  },
+  {
+    "id": "2034271780185137153",
+    "label": "",
+    "score": 15,
+    "problemConfig": {
+      "solutionVisible": false,
+      "multipleFileProblemConfig": {
+        "memoryLimit": 16384,
+        "cpuCount": 1,
+        "template": "GENERAL",
+        "files": [
+          {
+            "path": "main.sh",
+            "directory": false
+          },
+          {
+            "path": "src/",
+            "directory": true
+          },
+          {
+            "path": "src/main.asm",
+            "directory": false
+          }
+        ],
+        "judgeZip": "2887d0eb-30d5-433e-bef1-fbe321f3cd4e.zip",
+        "originalScore": 15,
+        "compiles": [
+          "GCC"
+        ],
+        "tools": [
+          "MAKE"
+        ],
+        "withLocalhostNetwork": false,
+        "fileContents": {
+          "src/main.asm": "code segment\r\nassume cs:code\r\noutput_cr:    ; 用标号来命名一个函数\r\n   mov ah, 2\r\n   mov dl, 0Dh; 回车符的ASCII码\r\n   int 21h    ; putchar('\\r');\r\n   mov ah, 2\r\n   mov dl, 0Ah; 换行符的ASCII码\r\n   int 21h    ; putchar('\\n');\r\n   ret        ; 函数返回\r\n   \r\noutput_space: ; 输出bp个空格\r\n   push bp\r\noutput_space_next:\r\n   cmp bp, 0\r\n   je output_space_done\r\n   mov ah, 2\r\n   mov dl, ' '\r\n   int 21h\r\n   sub bp, 1\r\n   jmp output_space_next\r\noutput_space_done:\r\n   pop bp\r\n   ret\r\n   \r\noutput_star: ; 输出bp个*\r\n   push bp\r\noutput_star_next:   \r\n   mov ah, 2\r\n   mov dl, '*'\r\n   int 21h\r\n   sub bp, 1\r\n   jnz output_star_next\r\n   pop bp\r\n   ret\r\n   \r\nmain:\r\n   mov ah, 1   ; 调用DOS的1号功能输入一个字符\r\n   int 21h     ; AL=输入的字符\r\n               ; 假设输入的字符是{'1', '3', '5', '7', '9'}内的其中之一\r\n   mov ah, 0   ; 把AX的高8位清零\r\n   sub al, '0' ; 脱引号, 比如'5' -> 5\r\n   mov bx, ax  ; bx=行数\r\n   call output_cr\r\n   ;#1_begin-------------------\r\n                              ;<--第1空, 请把解答写在分号左边, 可填多条指令\r\n                              ;第1空须完成以下计算:\r\n                              ;①ax=行数/2; ②si=-(行数/2); ③di=行数/2\r\n                           \r\n             \r\n                        \r\n   ;#1_end=====================\r\nnext_row:   \r\n   mov bp, si\r\n   ;#2_begin-------------------\r\n                              ;<--第2空, 请把解答写在分号左边, 可填多条指令\r\n                              ;第2空须完成以下计算:                        \r\n                              ;bp=待输出的空格数=abs(si)\r\n             \r\n                              \r\n   ;#2_end=====================\r\nbp_is_positive:\r\n   call output_space\r\n   ;#3_begin-------------------  \r\n                              ;<--第3空, 请把解答写在分号左边, 可填多条指令\r\n                              ;第3空须完成以下计算:                        \r\n                              ;bp=待输出的*个数=bx - 2*abs(si)\r\n                              \r\n   ;#3_end=====================\r\n   call output_star\r\n   call output_cr\r\n   add si, 1\r\n   cmp si, di\r\n   jle next_row\r\nexit:   \r\n   mov ah, 4Ch\r\n   int 21h\r\ncode ends\r\nend main\r\n"
+        },
+        "timeLimit": 31000
+      },
+      "answerVisible": false
+    },
+    "deadline": "1970-01-01T00:00:00Z",
+    "title": "practice_asm_多文件程序填空题_输入一个正奇数n输出由n行星号构成的菱形",
+    "content": "这是一个多文件编程题的样例。请在这里写题目描述。\n",
+    "type": "MULTIPLE_FILE",
+    "author": "blackwhite",
+    "difficulty": 0,
+    "compiler": "NO_COMPILER",
+    "problemStatus": "PRIVATE",
+    "lastSubmissionId": "0",
+    "solution": "",
+    "problemSetId": "2034271646508474368",
+    "problemId": "1981314039819927552",
+    "description": "\n$\\huge{\\color{#00C000}1.}$ $\\large\\texttt{本题题型: 程序填空(共3空)}$\n$\\huge{\\color{#00C000}2.}$ $\\large\\texttt{代码描述}$\n输入一个正奇数$\\color{C00000}n$，输出由$\\color{008080}n$行星号构成的菱形\n\n$\\huge{\\color{#00C000}3.}$ $\\large\\texttt{举例}$\n$\\large\\char\"2460$ 输入\n$\\hspace{4em}\\color{#C00000}\\tt{5}\\color{#0000C0}\\char\"21B2$\n则应该输出\n$$\n\\hspace{4em}\\color{#C00000}{\\large\\texttt{\\char\"2423{}\\char\"2423{}\\char\"2A}}\\color{#0000C0}\\char\"21B2\\\\\n\\hspace{4em}\\color{#C00000}{\\large\\texttt{\\char\"2423{}\\char\"2A\\char\"2A\\char\"2A}}\\color{#0000C0}\\char\"21B2\\\\\n\\hspace{4em}\\color{#C00000}{\\large\\texttt{\\char\"2A\\char\"2A\\char\"2A\\char\"2A\\char\"2A}}\\color{#0000C0}\\char\"21B2\\\\\n\\hspace{4em}\\color{#C00000}{\\large\\texttt{\\char\"2423{}\\char\"2A\\char\"2A\\char\"2A}}\\color{#0000C0}\\char\"21B2\\\\\n\\hspace{4em}\\color{#C00000}{\\large\\texttt{\\char\"2423{}\\char\"2423{}\\char\"2A}}\\color{#0000C0}\\char\"21B2\\\\\n$$\n\n\n$\\large\\char\"2461$ 输入\n$\\hspace{4em}\\color{#C00000}\\tt{7}\\color{#0000C0}\\char\"21B2$\n则应该输出\n$$\n\\hspace{4em}\\color{#C00000}{\\large\\texttt{\\char\"2423{}\\char\"2423{}\\char\"2423{}\\char\"2A}}\\color{#0000C0}\\char\"21B2\\\\\n\\hspace{4em}\\color{#C00000}{\\large\\texttt{\\char\"2423{}\\char\"2423{}\\char\"2A\\char\"2A\\char\"2A}}\\color{#0000C0}\\char\"21B2\\\\\n\\hspace{4em}\\color{#C00000}{\\large\\texttt{\\char\"2423{}\\char\"2A\\char\"2A\\char\"2A\\char\"2A\\char\"2A}}\\color{#0000C0}\\char\"21B2\\\\\n\\hspace{4em}\\color{#C00000}{\\large\\texttt{\\char\"2A\\char\"2A\\char\"2A\\char\"2A\\char\"2A\\char\"2A\\char\"2A}}\\color{#0000C0}\\char\"21B2\\\\\n\\hspace{4em}\\color{#C00000}{\\large\\texttt{\\char\"2423{}\\char\"2A\\char\"2A\\char\"2A\\char\"2A\\char\"2A}}\\color{#0000C0}\\char\"21B2\\\\\n\\hspace{4em}\\color{#C00000}{\\large\\texttt{\\char\"2423{}\\char\"2423{}\\char\"2A\\char\"2A\\char\"2A}}\\color{#0000C0}\\char\"21B2\\\\\n\\hspace{4em}\\color{#C00000}{\\large\\texttt{\\char\"2423{}\\char\"2423{}\\char\"2423{}\\char\"2A}}\\color{#0000C0}\\char\"21B2\\\\\n$$\n\n$\\huge{\\color{#00C000}4.}$ $\\large\\texttt{提示}$\n$\\large\\char\"2460$  $\\color{008080}call$指令用来调用一个函数，其语法为$\\color{C00000}\\underline{call~~标号}$，相应地，用$\\color{008080}标号$来定义函数名，函数的最后一条语句必须是$\\color{008080}ret$指令，表示函数返回\n$\\large\\char\"2461$ 在调试时跟踪到$\\color{C00000}\\underline{call~~标号}$语句时，若要跟踪进入($trace~into$)，请按$\\color{C00000}F7$键，若想步过($step~over$)此函数调用，则应按$\\color{C00000}F8$键\n\n$\\huge{\\color{#00C000}5.}$ $\\large\\texttt{注意事项}$\n$\\large\\char\"2460$  请在$\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$之间补充代码，不可删除$\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$标记\n$\\large\\char\"2461$  $\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$之间允许写多条指令\n\n\n$\\huge{\\color{#00C000}6.}$ ${\\large\\texttt{提交步骤}}$\n$\\large\\char\"2460$ 复制以下源程序内容\n```x86asm\ncode segment\nassume cs:code\noutput_cr:    ; 用标号来命名一个函数\n   mov ah, 2\n   mov dl, 0Dh; 回车符的ASCII码\n   int 21h    ; putchar('\\r');\n   mov ah, 2\n   mov dl, 0Ah; 换行符的ASCII码\n   int 21h    ; putchar('\\n');\n   ret        ; 函数返回\n   \noutput_space: ; 输出bp个空格\n   push bp\noutput_space_next:\n   cmp bp, 0\n   je output_space_done\n   mov ah, 2\n   mov dl, ' '\n   int 21h\n   sub bp, 1\n   jmp output_space_next\noutput_space_done:\n   pop bp\n   ret\n   \noutput_star: ; 输出bp个*\n   push bp\noutput_star_next:   \n   mov ah, 2\n   mov dl, '*'\n   int 21h\n   sub bp, 1\n   jnz output_star_next\n   pop bp\n   ret\n   \nmain:\n   mov ah, 1   ; 调用DOS的1号功能输入一个字符\n   int 21h     ; AL=输入的字符\n               ; 假设输入的字符是{'1', '3', '5', '7', '9'}内的其中之一\n   mov ah, 0   ; 把AX的高8位清零\n   sub al, '0' ; 脱引号, 比如'5' -> 5\n   mov bx, ax  ; bx=行数\n   call output_cr\n   ;#1_begin-------------------\n                              ;<--第1空, 请把解答写在分号左边, 可填多条指令\n                              ;第1空须完成以下计算:\n                              ;①ax=行数/2; ②si=-(行数/2); ③di=行数/2\n                           \n             \n                        \n   ;#1_end=====================\nnext_row:   \n   mov bp, si\n   ;#2_begin-------------------\n                              ;<--第2空, 请把解答写在分号左边, 可填多条指令\n                              ;第2空须完成以下计算:                        \n                              ;bp=待输出的空格数=abs(si)\n             \n                              \n   ;#2_end=====================\nbp_is_positive:\n   call output_space\n   ;#3_begin-------------------  \n                              ;<--第3空, 请把解答写在分号左边, 可填多条指令\n                              ;第3空须完成以下计算:                        \n                              ;bp=待输出的*个数=bx - 2*abs(si)\n                              \n   ;#3_end=====================\n   call output_star\n   call output_cr\n   add si, 1\n   cmp si, di\n   jle next_row\nexit:   \n   mov ah, 4Ch\n   int 21h\ncode ends\nend main\n```\n$\\large\\char\"2461$ 在桌面空白处，点右键$\\rightarrow$新建$\\rightarrow$文本文档，并把此文件重命名设为$\\underline{\\color{008080}s.asm}$\n$\\large\\char\"2462$ 用$\\color{C00000}editplus$打开$s.asm$\n$\\large\\char\"2463$ 把步骤$\\large\\char\"2460$复制的内容粘贴到$editplus$内\n$\\large\\char\"2464$ 在$editplus$中对代码进行完善，注意完善代码时切勿删除$\\color{#C000C0}\\underline{;\\#1\\_begin}$、$\\color{#C000C0}\\underline{;\\#1\\_end}$标记\n$\\large\\char\"2465$ 保存$s.asm$并在$XP$或$Bochs$虚拟机中编译、调试$s.asm$\n$\\large\\char\"2466$ 复制$s.asm$的内容到提交框内，点“$\\underline{\\color{C00000}\\tt{提交本题作答}}$”按钮 \n",
+    "problemPoolIndex": 2,
+    "indexInProblemPool": 1,
+    "authorOrganizationId": "1"
+  }
+]

@@ -1,0 +1,173 @@
+[
+  {
+    "id": "2046960271473872896",
+    "label": "",
+    "score": 10,
+    "problemConfig": {
+      "solutionVisible": false,
+      "multipleFileProblemConfig": {
+        "memoryLimit": 32768,
+        "cpuCount": 1,
+        "template": "GENERAL",
+        "files": [
+          {
+            "path": "main.sh",
+            "directory": false
+          },
+          {
+            "path": "src/",
+            "directory": true
+          },
+          {
+            "path": "src/main.asm",
+            "directory": false
+          }
+        ],
+        "judgeZip": "c3a32c51-90df-4348-8455-79aeb5203d7f.zip",
+        "originalScore": 10,
+        "compiles": [
+          "GCC"
+        ],
+        "tools": [
+          "MAKE"
+        ],
+        "withLocalhostNetwork": false,
+        "fileContents": {
+          "src/main.asm": ".386\r\ndata segment use16\r\nbuf db 0, 0\r\nc   db 0\r\nhex db 0, 0\r\ndata ends\r\n\r\ncode segment use16\r\nassume cs:code, ds:data\r\nmain:\r\n   mov ax, data\r\n   mov ds, ax\r\n   mov ax, 0B800h\r\n   mov es, ax\r\n   mov di, 0\r\n   ;\r\n   mov ah, 1\r\n   int 21h\r\n   mov buf[0], al\r\n   mov ah, 1\r\n   int 21h\r\n   mov buf[1], al\r\n   push ax\r\n   mov ax, 3\r\n   int 10h  ; 清屏\r\n   pop ax   \r\n;#1_begin---------------------\r\n                             ; <--第1空, 请把解答写在分号左边, 可填多条指令\r\n                             \r\n;#1_end=======================\r\ndone:\r\n   mov ah, 4Ch\r\n   int 21h\r\ncode ends\r\nend main\r\n"
+        },
+        "timeLimit": 10000
+      },
+      "answerVisible": false
+    },
+    "deadline": "1970-01-01T00:00:00Z",
+    "title": "practice_asm_多文件_函数_007_写显卡内存输出ASCII字符及其16进制ASCII码",
+    "content": "\n# 一. 题目描述\n以下程序的功能是从键盘输入一个十六进制数，该十六进制数一共$2$位，其中十位保存到$buf[0]$中，个位保存到$buf[1]$中，无论十位还是个位只要输入的是字母则一定是大写形式。\n接下去按以下步骤从屏幕第0行起输出16行内容，每行都输出字符$\\underline{c+i}$($i$为屏幕行号,$c$为输入的16进制ASCII码对应的字符)及其16进制ASCII码:\n$\\large\\char\"2776$把$buf[0]$及$buf[1]$中的十六进制字符脱去引号\n$\\large\\char\"2777$计算$(buf[0]<<4)~ |~ buf[1]$的值并保存到变量$c$中\n$\\large\\char\"2778$$i=0$\n$\\large\\char\"2779$在$(0,i)$处显示字符$c$, 颜色为$7Ch$\n$\\large\\char\"277A$在$(1,i)$处显示字符$c$的$2$位十六进制$ASCII$码, 颜色为$1Ah$\n$\\large\\char\"277B$$c++$\n$\\large\\char\"277C$$i++$\n$\\large\\char\"277D$$if(i<16)\\enspace goto\\enspace \\large\\char\"2779$\n$\\large\\char\"277E$结束程序运行\n\n# 二. 输入输出样例\n$\\color{#00C000}\\huge{1.}$ 输入样例:\n$\\underline{\\color{#C00000}\\large\\mathtt{F4}}$ \n\n$\\color{#00C000}\\huge{2.}$ 输出样例\n![ascii.png](~/868c6a56-53e1-4fee-bd68-a0886f635ede.png)\n\n# 三. 参考程序\n<url>http://cc.zju.edu.cn/bhh/asm/ascii.c</url> 用C语言写的解答\n<url>http://cc.zju.edu.cn/bhh/asm/calldemo.asm</url> 演示如何定义并调用函数\n# 四. 提交步骤\n下载zip题目包，解压缩，对$src/main.asm$进行完善，选中$main.sh$及$src$目录$\\rightarrow$右键$\\rightarrow$压缩成$submit.zip$文件，提交$submit.zip$。\n\n\n\n",
+    "type": "MULTIPLE_FILE",
+    "author": "blackwhite",
+    "difficulty": 0,
+    "compiler": "NO_COMPILER",
+    "problemStatus": "PRIVATE",
+    "lastSubmissionId": "0",
+    "solution": "",
+    "problemSetId": "2046959921308205056",
+    "problemId": "1644729954354749440",
+    "description": "\n$\\huge{\\color{#00C000}1.}$ $\\large\\texttt{本题题型: 程序填空(共1空)}$\n$\\huge{\\color{#00C000}2.}$ $\\large\\texttt{代码描述}$\n$\\large\\char\"2460$ 从键盘输入一个十六进制数，该十六进制数一共$2$位，其中十位保存到$buf[0]$中，个位保存到$buf[1]$中，无论十位还是个位只要输入的是字母则一定是大写形式。\n$\\large\\char\"2461$ 接下去按以下步骤从屏幕第$\\color{C00000}0$行起总共输出$\\color{C00000}16$行内容，每行输出字符$\\underline{\\color{008080}{c+i}}$($i$为屏幕行号,$c$为已输入的十六进制ASCII码所对应的字符)及其$\\underline{\\color{008080}十六进制ASCII码}$:\n$\\large\\char\"2776$把$buf[0]$及$buf[1]$中的十六进制字符脱去引号，例如$\\color{C00000}\\tt{'3'}$转化成$\\color{008080}\\tt{3}$，$\\color{C00000}\\tt{'A'}$转化成$\\color{008080}\\tt{10}$。\n$\\large\\char\"2777$计算$(buf[0]<<4)~ |~ buf[1]$的值并保存到变量$c$中\n$\\large\\char\"2778$$i=0$\n$\\large\\char\"2779$在$(0,i)$处显示字符$c$, 颜色为$7Ch$\n$\\large\\char\"277A$在$(1,i)$处显示字符$c$的$2$位十六进制$ASCII$码, 颜色为$1Ah$\n$\\large\\char\"277B$$c++$\n$\\large\\char\"277C$$i++$\n$\\large\\char\"277D$$if(i<16)\\enspace goto\\enspace \\large\\char\"2779$\n$\\large\\char\"277E$结束程序运行\n\n\n$\\huge{\\color{#00C000}3.}$ $\\large\\texttt{举例}$\n设有以下输入:\n$\\underline{\\color{#C00000}\\large\\mathtt{F4}}$ \n则应该输出:\n![ascii.png](~/868c6a56-53e1-4fee-bd68-a0886f635ede.png)\n\n\n$\\huge{\\color{#00C000}4.}$ $\\large\\texttt{提示}$\n$\\large\\char\"2460$  设$\\color{C00000}\\tt{es:bx\\rightarrow}$屏幕坐标$(x,y)$处的字符，且$AL=$待输出字符，$AH=$待输出字符的颜色，那么以下语句可以在$(x,y)$处输出该字符：\n$\\hspace{4em}\\color{008080}mov~~ es:[bx], ~al$\n$\\hspace{4em}\\color{008080}mov~~ es:[bx+1], ~ah$\n$\\large\\char\"2461$  屏幕坐标$(x,y)$处字符的显卡偏移地址$off$的计算公式为：$\\underline{\\color{008080}off=(y*80+x)*2}$\n$\\large\\char\"2462$  设屏幕坐标$(x,y)$处字符的显卡偏移地址为$\\color{008080}off$，那么坐标$(x,y+1)$处字符的显卡偏移地址为$\\color{008080}off+160$\n$\\large\\char\"2463$  如何在填空内定义函数\n$\\large\\char\"2776$ 方法1:\n```x86asm\nmy_code:\n...\ncall function1\n...\ncall function2\n...\njmp done\nfunction1:\n...\nret\nfunction2:\n...\nret\n```\n$\\large\\char\"2777$ 方法2:\n```x86asm\njmp my_code\nfunction1:\n...\nret\nfunction2:\n...\nret\nmy_code:\n...\ncall function1\n...\ncall function2\n...\n```\n$\\huge{\\color{#00C000}5.}$ $\\large\\texttt{注意事项}$\n$\\large\\char\"2460$  请在$\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$之间补充代码，不可删除$\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$标记\n$\\large\\char\"2461$  $\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$之间允许写多条指令\n\n\n$\\huge{\\color{#00C000}6.}$ ${\\large\\texttt{提交步骤}}$\n$\\large\\char\"2460$ 复制以下源程序内容\n```x86asm\n.386\ndata segment use16\nbuf db 0, 0\nc   db 0\nhex db 0, 0\ndata ends\n\ncode segment use16\nassume cs:code, ds:data\nmain:\n   mov ax, data\n   mov ds, ax\n   mov ax, 0B800h\n   mov es, ax\n   mov di, 0\n   ;\n   mov ah, 1\n   int 21h\n   mov buf[0], al\n   mov ah, 1\n   int 21h\n   mov buf[1], al\n   push ax\n   mov ax, 3\n   int 10h  ; 清屏\n   pop ax   \n;#1_begin---------------------\n                             ; <--第1空, 请把解答写在分号左边, 可填多条指令\n                             \n;#1_end=======================\ndone:\n   mov ah, 4Ch\n   int 21h\ncode ends\nend main\n```\n$\\large\\char\"2461$ 在桌面空白处，点右键$\\rightarrow$新建$\\rightarrow$文本文档，并把此文件重命名设为$\\underline{\\color{008080}s.asm}$\n$\\large\\char\"2462$ 用$\\color{C00000}editplus$打开$s.asm$\n$\\large\\char\"2463$ 把步骤$\\large\\char\"2460$复制的内容粘贴到$editplus$内\n$\\large\\char\"2464$ 在$editplus$中对代码进行完善，注意完善代码时切勿删除$\\color{#C000C0}\\underline{;\\#n\\_begin}$、$\\color{#C000C0}\\underline{;\\#n\\_end}$标记\n$\\large\\char\"2465$ 保存$s.asm$并在$XP$或$Bochs$虚拟机中编译、调试$s.asm$\n$\\large\\char\"2466$ 复制$s.asm$的内容到提交框内，点“$\\underline{\\color{C00000}\\tt{提交本题作答}}$”按钮 \n",
+    "problemPoolIndex": 1,
+    "indexInProblemPool": 1,
+    "authorOrganizationId": "1"
+  },
+  {
+    "id": "2046960271473872897",
+    "label": "",
+    "score": 10,
+    "problemConfig": {
+      "solutionVisible": false,
+      "multipleFileProblemConfig": {
+        "memoryLimit": 32768,
+        "cpuCount": 1,
+        "template": "GENERAL",
+        "files": [
+          {
+            "path": "main.sh",
+            "directory": false
+          },
+          {
+            "path": "src/",
+            "directory": true
+          },
+          {
+            "path": "src/main.asm",
+            "directory": false
+          }
+        ],
+        "judgeZip": "50a8d0c7-fbb8-4b34-be67-6a0bb4ae5ec3.zip",
+        "originalScore": 10,
+        "compiles": [
+          "GCC"
+        ],
+        "tools": [
+          "MAKE"
+        ],
+        "withLocalhostNetwork": false,
+        "fileContents": {
+          "src/main.asm": ".386\r\ndata segment use16\r\nsth db 10h dup(0)\r\nd   db 20h dup('D')\r\nh   db 20h dup('H')\r\nresult dd 0\r\ndata ends\r\n\r\ncode segment use16\r\nassume cs:code, ds:data\r\nmain:\r\n   mov ax, data\r\n   mov ds, ax\r\n   mov eax, -1\r\n   mov ebx, eax\r\n   mov ecx, eax\r\n   mov edx, eax\r\n   mov esi, eax\r\n   mov edi, eax\r\n   mov ebp, eax\r\n;#1_begin--------------------\r\n                            ; <--第1空, 请把解答写在分号左边, 可填多条指令\r\n                            \r\n;#1_end======================\r\nexit:\r\n   mov ah, 4Ch\r\n   int 21h\r\ncode ends\r\nend main\r\n"
+        },
+        "timeLimit": 10000
+      },
+      "answerVisible": false
+    },
+    "deadline": "1970-01-01T00:00:00Z",
+    "title": "practice_asm_多文件_函数_005_输入一个十进制数及一个十六进制数并求和",
+    "content": "# 一. 题目描述\n$\\color{#00C000}\\huge{1.}$ 从键盘输入一个其值不超过$4294967295$的十进制数及一个其值不超过$0FFFFFFFFh$的十六进制数，这两个数输入时均以回车结束，其中十进制数保存在数组$d$中，十六进制数保存在数组$h$中。因judge程序会提供符合范围的输入，故程序中不需要对两个数的范围进行检测。\n$\\color{#00C000}\\huge{2.}$ 把$d$中的字符串转化成整数，把$h$中的字符串也转化成整数，求它们的和，结果保存到变量$result$中。若求和时有进位，则丢弃该进位。\n$\\color{#00C000}\\huge{3.}$ 例如：输入\n$\\hspace{2em}\\underline{\\color{#C00000}\\large\\mathtt{2147483647}}\\char\"21B2$\n$\\hspace{2em}\\underline{\\color{#800080}\\large\\mathtt{8086CaFe}}\\char\"21B2$\n则$result=\\tt{0086CAFDh}$。\n# 二. 提交步骤\n下载zip题目包，解压缩，对$src/main.c$进行完善，选中$main.sh$及$src$目录$\\rightarrow$右键$\\rightarrow$压缩成$submit.zip$文件，提交$submit.zip$。\n",
+    "type": "MULTIPLE_FILE",
+    "author": "blackwhite",
+    "difficulty": 0,
+    "compiler": "NO_COMPILER",
+    "problemStatus": "PRIVATE",
+    "lastSubmissionId": "0",
+    "solution": "",
+    "problemSetId": "2046959921308205056",
+    "problemId": "1773226884181118976",
+    "description": "\n$\\huge{\\color{#00C000}1.}$ $\\large\\texttt{本题题型: 程序填空(共1空)}$\n$\\huge{\\color{#00C000}2.}$ $\\large\\texttt{代码描述}$\n$\\large\\char\"2460$  从键盘输入一个其值不超过$4294967295$的十进制数及一个其值不超过$0FFFFFFFFh$的十六进制数，这两个数输入时均以回车结束，其中十进制数保存在数组$\\color{C00000}d$中，十六进制数保存在数组$\\color{C00000}h$中。因$judge$程序会提供符合范围的输入，故程序中不需要对两个数的范围进行检测。\n$\\large\\char\"2461$  把$\\color{C00000}d$中的字符串转化成整数，把$\\color{C00000}h$中的字符串也转化成整数，求它们的和，结果保存到变量$\\color{008080}result$中。若求和时有进位，则丢弃该进位。\n\n$\\huge{\\color{#00C000}3.}$ $\\large\\texttt{举例}$\n若输入\n$\\hspace{2em}\\underline{\\color{#C00000}\\large\\mathtt{2147483647}}\\char\"21B2$\n$\\hspace{2em}\\underline{\\color{#800080}\\large\\mathtt{8086CaFe}}\\char\"21B2$\n则\n$result=\\tt{0086CAFDh}$\n\n$\\huge{\\color{#00C000}4.}$ $\\large\\texttt{提示}$\n如何在填空内定义函数\n$\\large\\char\"2776$ 方法1:\n```x86asm\nmy_code:\n...\ncall function1\n...\ncall function2\n...\njmp exit\nfunction1:\n...\nret\nfunction2:\n...\nret\n```\n$\\large\\char\"2777$ 方法2:\n```x86asm\njmp my_code\nfunction1:\n...\nret\nfunction2:\n...\nret\nmy_code:\n...\ncall function1\n...\ncall function2\n...\n```\n\n$\\huge{\\color{#00C000}5.}$ $\\large\\texttt{注意事项}$\n$\\large\\char\"2460$  请在$\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$之间补充代码，不可删除$\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$标记\n$\\large\\char\"2461$  $\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$之间允许写多条指令\n\n$\\huge{\\color{#00C000}6.}$ ${\\large\\texttt{提交步骤}}$\n$\\large\\char\"2460$ 复制以下源程序内容\n```x86asm\n.386\ndata segment use16\nsth db 10h dup(0)\nd   db 20h dup('D')\nh   db 20h dup('H')\nresult dd 0\ndata ends\n\ncode segment use16\nassume cs:code, ds:data\nmain:\n   mov ax, data\n   mov ds, ax\n   mov eax, -1\n   mov ebx, eax\n   mov ecx, eax\n   mov edx, eax\n   mov esi, eax\n   mov edi, eax\n   mov ebp, eax\n;#1_begin--------------------\n                            ; <--第1空, 请把解答写在分号左边, 可填多条指令\n                            \n;#1_end======================\nexit:\n   mov ah, 4Ch\n   int 21h\ncode ends\nend main\n```\n$\\large\\char\"2461$ 在桌面空白处，点右键$\\rightarrow$新建$\\rightarrow$文本文档，并把此文件重命名设为$\\underline{\\color{008080}s.asm}$\n$\\large\\char\"2462$ 用$\\color{C00000}editplus$打开$s.asm$\n$\\large\\char\"2463$ 把步骤$\\large\\char\"2460$复制的内容粘贴到$editplus$内\n$\\large\\char\"2464$ 在$editplus$中对代码进行完善，注意完善代码时切勿删除$\\color{#C000C0}\\underline{;\\#n\\_begin}$、$\\color{#C000C0}\\underline{;\\#n\\_end}$标记\n$\\large\\char\"2465$ 保存$s.asm$并在$XP$或$Bochs$虚拟机中编译、调试$s.asm$\n$\\large\\char\"2466$ 复制$s.asm$的内容到提交框内，点“$\\underline{\\color{C00000}\\tt{提交本题作答}}$”按钮 \n",
+    "problemPoolIndex": 2,
+    "indexInProblemPool": 1,
+    "authorOrganizationId": "1"
+  },
+  {
+    "id": "2046984915018940416",
+    "label": "",
+    "score": 10,
+    "problemConfig": {
+      "solutionVisible": false,
+      "multipleFileProblemConfig": {
+        "memoryLimit": 32768,
+        "cpuCount": 1,
+        "template": "GENERAL",
+        "files": [
+          {
+            "path": "main.sh",
+            "directory": false
+          },
+          {
+            "path": "src/",
+            "directory": true
+          },
+          {
+            "path": "src/main.asm",
+            "directory": false
+          }
+        ],
+        "judgeZip": "f2a6d2d8-249b-4060-95ea-ffe348af8f4f.zip",
+        "originalScore": 10,
+        "compiles": [
+          "GCC"
+        ],
+        "tools": [
+          "MAKE"
+        ],
+        "withLocalhostNetwork": false,
+        "fileContents": {
+          "src/main.asm": ".386\r\ndata segment use16\r\nbuf    db 20 dup(0)       \r\nmatrix db 000h,000h,07Ch,0C6h,0C6h,0CEh,0DEh,0F6h;\\ 8*16 matrix for\r\n       db 0E6h,0C6h,0C6h,07Ch,000h,000h,000h,000h;/ '0'\r\n       db 000h,000h,018h,078h,018h,018h,018h,018h;\\ 8*16 matrix for\r\n       db 018h,018h,018h,07Eh,000h,000h,000h,000h;/ '1'            \r\n       db 000h,000h,07Ch,0C6h,0C6h,006h,00Ch,018h;\\ 8*16 matrix for\r\n       db 030h,060h,0C6h,0FEh,000h,000h,000h,000h;/ '2'            \r\n       db 000h,000h,07Ch,0C6h,006h,006h,03Ch,006h;\\ 8*16 matrix for\r\n       db 006h,006h,0C6h,07Ch,000h,000h,000h,000h;/ '3'            \r\n       db 000h,000h,00Ch,01Ch,03Ch,06Ch,0CCh,0CCh;\\ 8*16 matrix for\r\n       db 0FEh,00Ch,00Ch,01Eh,000h,000h,000h,000h;/ '4'            \r\n       db 000h,000h,0FEh,0C0h,0C0h,0C0h,0FCh,006h;\\ 8*16 matrix for\r\n       db 006h,006h,0C6h,07Ch,000h,000h,000h,000h;/ '5'            \r\n       db 000h,000h,07Ch,0C6h,0C0h,0C0h,0FCh,0C6h;\\ 8*16 matrix for\r\n       db 0C6h,0C6h,0C6h,07Ch,000h,000h,000h,000h;/ '6'            \r\n       db 000h,000h,0FEh,0C6h,006h,00Ch,018h,030h;\\ 8*16 matrix for\r\n       db 030h,030h,030h,030h,000h,000h,000h,000h;/ '7'            \r\n       db 000h,000h,07Ch,0C6h,0C6h,0C6h,07Ch,0C6h;\\ 8*16 matrix for\r\n       db 0C6h,0C6h,0C6h,07Ch,000h,000h,000h,000h;/ '8'            \r\n       db 000h,000h,07Ch,0C6h,0C6h,0C6h,0C6h,07Eh;\\ 8*16 matrix for\r\n       db 006h,006h,0C6h,07Ch,000h,000h,000h,000h;/ '9' \r\ndata ends\r\n\r\ncode segment use16\r\nassume cs:code, ds:data\r\nmain:\r\n   mov ax, data\r\n   mov ds, ax\r\n   ;\r\n   mov cx, 10     ; 最多输入10个十进制字符\r\n   mov si, 0      ; si是buf的下标\r\ninput_next:   \r\n   mov ah, 1\r\n   int 21h        ; AL=getchar()\r\n   cmp al, 0Dh    ; 若AL==回车符\r\n   je input_done  ;    =>input_done\r\n   mov buf[si], al; buf[si] = AL\r\n   add si, 1      ; si++\r\n   sub cx, 1\r\n   jnz input_next\r\ninput_done:\r\n   mov buf[si], 0 ; buf[si] = '\\0'\r\n   mov ah, 2\r\n   mov dl, 0Dh\r\n   int 21h        ; 输出回车符\r\n   mov ah, 2\r\n   mov dl, 0Ah\r\n   int 21h        ; 输出换行符\r\n   ;   \r\n   mov ah, 0\r\n   mov al, 13h\r\n   int 10h        ; 切换到320*200图形模式\r\n   mov ax, 0A000h\r\n   mov es, ax     ; 设置显卡地址为A000:0000   \r\n   mov bx, -1\r\n   mov bp, bx\r\n   mov si, bx\r\n   mov di, bx\r\n;#1_begin-------------------------------------\r\n                                             ;<--第1空, 请把解答写在分号左边, 可填多条指令\r\n\r\n;#1_end=======================================\r\nexit:\r\n   mov ah, 0\r\n   mov al, 3\r\n   int 10h        ; 切换回80*25文本模式\r\n   mov ah, 4Ch\r\n   int 21h\r\ncode ends\r\nend main\r\n\r\n"
+        },
+        "timeLimit": 6000
+      },
+      "answerVisible": false
+    },
+    "deadline": "1970-01-01T00:00:00Z",
+    "title": "practice_asm_多文件_函数_011(new)_输入一个十进制字符串,输出该字符串所含字符的8x16点阵",
+    "content": "这是一个多文件编程题的样例。请在这里写题目描述。\n",
+    "type": "MULTIPLE_FILE",
+    "author": "blackwhite",
+    "difficulty": 0,
+    "compiler": "NO_COMPILER",
+    "problemStatus": "PRIVATE",
+    "lastSubmissionId": "0",
+    "solution": "",
+    "problemSetId": "2046959921308205056",
+    "problemId": "2046984643311927296",
+    "description": "![dotmatrix.png](~/3036ea26-a7e5-49b8-98ee-5b44ca6c4221.png)\n$\\huge{\\color{#00C000}1.}$ $\\large\\texttt{本题题型: 多文件程序填空题(共1空)}$\n$\\huge{\\color{#00C000}2.}$ $\\large\\texttt{代码描述}$\n$\\large\\char\"2460$ 从键盘输入一个十进制字符串并保存到数组$\\color{C00000}buf$中，该字符串的长度$\\leqslant{}10$\n$\\large\\char\"2461$ $i=0$\n$\\large\\char\"2462$ 从$buf$中取出字符$buf[i]$，若$buf[i]==0$则跳转到$\\large\\char\"2467$\n$\\large\\char\"2463$ 按以下公式计算出该字符的8x16点阵信息的偏移地址$matrix\\_addr$：\n$\\hspace{3em}matrix\\_addr = (offset~~ matrix) ~+~ {\\large{(}}(buf[i] - \\tt{'}0\\tt{'}) <<4{\\large{)}}$\n假设$buf[i]=\\tt{'}5\\tt{'}$，那么其16字节的十六进制点阵信息如$\\color{008080}\\underline{表1}$所示，其16字节的二进制点阵信息如$\\color{008080}\\underline{表2}$所示，其8x16点阵图如$\\color{008080}\\underline{表3}$所示\n$\\large\\char\"2464$ 在坐标$(i*8, 0)$处画出$buf[i]$的点阵图，其中二进制位值=1的位应画一个颜色值=04h的红点，二进制位值=0的位应画一个颜色值=00h的黑点\n$\\large\\char\"2465$ $i=i+1$\n$\\large\\char\"2466$ 跳转到$\\large\\char\"2462$ \n$\\large\\char\"2467$ 结束\n \n$\\huge{\\color{#00C000}3.}$ $\\large\\texttt{输入输出样例}$\n$\\large\\char\"2460$ 输入样例\n$\\color{#C000C0}\\tt{1234567890}\\char\"21B2$\n$\\large\\char\"2461$ 输出样例\n![1234567890.png](~/64c9b504-c0c1-48ef-a51f-cfb9ce769a20.png)\n\n$\\huge{\\color{#00C000}4.}$ $\\large\\texttt{提示}$\n用$td$调试有图形输出的程序时很难在$User~Screen$中清晰地看到输出结果，故本程序应改用$soft\\char\"2D{}ice$来调试，调试步骤如下：\n$\\large\\char\"2460$ 用$\\underline{bochs@bw\\char\"5C{}DiskExplorer\\char\"5C{}editdisk.exe}$把源程序$s.asm$导入到$bochs$虚拟机硬盘文件$dos.img$中的$masm$目录内\n$\\large\\char\"2461$ 启动$bochs$虚拟机，选择$\\underline{1.~soft\\char\"2D{}ice}$进入$DOS$系统\n$\\large\\char\"2462$ 输入以下命令编译、调试$s.asm$：\n$\\large\\char\"2776$ $\\tt{cd~\\char\"5C{}masm}$\n$\\large\\char\"2777$ $\\tt{masm~s;}$\n$\\large\\char\"2778$ $\\tt{link~s;}$\n$\\large\\char\"2779$ $\\tt{ldr~s}$\n$soft\\char\"2D{}ice$的常用调试命令请参考教材$p.73$\n\n$\\huge{\\color{#00C000}5.}$ $\\large\\texttt{注意事项}$\n$\\large\\char\"2460$  请在$\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$之间补充代码，不可删除$\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$标记\n$\\large\\char\"2461$  $\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$之间允许写多条指令\n\n\n$\\huge{\\color{#00C000}6.}$ ${\\large\\texttt{提交步骤}}$\n$\\large\\char\"2460$ 复制以下源程序内容\n```x86asm\n.386\ndata segment use16\nbuf    db 20 dup(0)       \nmatrix db 000h,000h,07Ch,0C6h,0C6h,0CEh,0DEh,0F6h;\\ 8*16 matrix for\n       db 0E6h,0C6h,0C6h,07Ch,000h,000h,000h,000h;/ '0'\n       db 000h,000h,018h,078h,018h,018h,018h,018h;\\ 8*16 matrix for\n       db 018h,018h,018h,07Eh,000h,000h,000h,000h;/ '1'            \n       db 000h,000h,07Ch,0C6h,0C6h,006h,00Ch,018h;\\ 8*16 matrix for\n       db 030h,060h,0C6h,0FEh,000h,000h,000h,000h;/ '2'            \n       db 000h,000h,07Ch,0C6h,006h,006h,03Ch,006h;\\ 8*16 matrix for\n       db 006h,006h,0C6h,07Ch,000h,000h,000h,000h;/ '3'            \n       db 000h,000h,00Ch,01Ch,03Ch,06Ch,0CCh,0CCh;\\ 8*16 matrix for\n       db 0FEh,00Ch,00Ch,01Eh,000h,000h,000h,000h;/ '4'            \n       db 000h,000h,0FEh,0C0h,0C0h,0C0h,0FCh,006h;\\ 8*16 matrix for\n       db 006h,006h,0C6h,07Ch,000h,000h,000h,000h;/ '5'            \n       db 000h,000h,07Ch,0C6h,0C0h,0C0h,0FCh,0C6h;\\ 8*16 matrix for\n       db 0C6h,0C6h,0C6h,07Ch,000h,000h,000h,000h;/ '6'            \n       db 000h,000h,0FEh,0C6h,006h,00Ch,018h,030h;\\ 8*16 matrix for\n       db 030h,030h,030h,030h,000h,000h,000h,000h;/ '7'            \n       db 000h,000h,07Ch,0C6h,0C6h,0C6h,07Ch,0C6h;\\ 8*16 matrix for\n       db 0C6h,0C6h,0C6h,07Ch,000h,000h,000h,000h;/ '8'            \n       db 000h,000h,07Ch,0C6h,0C6h,0C6h,0C6h,07Eh;\\ 8*16 matrix for\n       db 006h,006h,0C6h,07Ch,000h,000h,000h,000h;/ '9' \ndata ends\n\ncode segment use16\nassume cs:code, ds:data\nmain:\n   mov ax, data\n   mov ds, ax\n   ;\n   mov cx, 10     ; 最多输入10个十进制字符\n   mov si, 0      ; si是buf的下标\ninput_next:   \n   mov ah, 1\n   int 21h        ; AL=getchar()\n   cmp al, 0Dh    ; 若AL==回车符\n   je input_done  ;    =>input_done\n   mov buf[si], al; buf[si] = AL\n   add si, 1      ; si++\n   sub cx, 1\n   jnz input_next\ninput_done:\n   mov buf[si], 0 ; buf[si] = '\\0'\n   mov ah, 2\n   mov dl, 0Dh\n   int 21h        ; 输出回车符\n   mov ah, 2\n   mov dl, 0Ah\n   int 21h        ; 输出换行符\n   ;   \n   mov ah, 0\n   mov al, 13h\n   int 10h        ; 切换到320*200图形模式\n   mov ax, 0A000h\n   mov es, ax     ; 设置显卡地址为A000:0000   \n   mov bx, -1\n   mov bp, bx\n   mov si, bx\n   mov di, bx\n;#1_begin-------------------------------------\n                                             ;<--第1空, 请把解答写在分号左边, 可填多条指令\n\n;#1_end=======================================\nexit:\n   mov ah, 0\n   mov al, 3\n   int 10h        ; 切换回80*25文本模式\n   mov ah, 4Ch\n   int 21h\ncode ends\nend main\n```\n$\\large\\char\"2461$ 在桌面空白处，点右键$\\rightarrow$新建$\\rightarrow$文本文档，并把此文件重命名设为$\\underline{\\color{008080}s.asm}$\n$\\large\\char\"2462$ 用$\\color{C00000}editplus$打开$s.asm$\n$\\large\\char\"2463$ 把步骤$\\large\\char\"2460$复制的内容粘贴到$editplus$内\n$\\large\\char\"2464$ 在$editplus$中对代码进行完善，注意完善代码时切勿删除$\\color{#C000C0}\\underline{;\\#n\\_begin}$、$\\color{#C000C0}\\underline{;\\#n\\_end}$标记\n$\\large\\char\"2465$ 保存$s.asm$并在$XP$或$Bochs$虚拟机中编译、调试$s.asm$\n$\\large\\char\"2466$ 复制$s.asm$的内容到提交框内，点“$\\underline{\\color{C00000}\\tt{提交本题作答}}$”按钮 \n",
+    "problemPoolIndex": 3,
+    "indexInProblemPool": 1,
+    "authorOrganizationId": "1"
+  }
+]

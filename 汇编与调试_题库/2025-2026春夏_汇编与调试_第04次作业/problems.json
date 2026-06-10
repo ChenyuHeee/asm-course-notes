@@ -1,0 +1,226 @@
+[
+  {
+    "id": "2041877778837065728",
+    "label": "",
+    "score": 10,
+    "problemConfig": {
+      "solutionVisible": false,
+      "multipleFileProblemConfig": {
+        "memoryLimit": 32768,
+        "cpuCount": 1,
+        "template": "GENERAL",
+        "files": [
+          {
+            "path": "main.sh",
+            "directory": false
+          },
+          {
+            "path": "src/",
+            "directory": true
+          },
+          {
+            "path": "src/main.asm",
+            "directory": false
+          }
+        ],
+        "judgeZip": "3d57de40-27d2-4dee-b3ee-05e50dfb6cfc.zip",
+        "originalScore": 10,
+        "compiles": [
+          "GCC"
+        ],
+        "tools": [
+          "MAKE"
+        ],
+        "withLocalhostNetwork": false,
+        "fileContents": {
+          "src/main.asm": ".386\r\ndata segment use16\r\ns db 10 dup(' '), 0\r\ndata ends\r\n\r\ncode segment use16\r\nassume cs:code, ds:data\r\nmain:\r\n   mov ax, seg s      ; seg s表示s的段地址\r\n   mov ds, ax         ; ds=数组s的段地址\r\n   mov si, offset s   ; offset s表示s的偏移地址\r\n   mov ebx, 7FFFFFFFh ; ebx=待转化的32位数，其值在评测时会改变\r\n   mov ebp, 10        ; ebp = 除数\r\nagain:   \r\n   mov edx, 0         ; 清除64位被除数(由edx、eax拼接)的高32位\r\n   mov eax, ebx       ; eax=64位被除数的低32位\r\n   div ebp            ; edx、eax / ebp = eax..edx, 商为eax, 余数为edx\r\n   add edx, '0'       ; 把edx中的余数转化成数字字符, 例如7转化成'7'\r\n   mov ds:[si], dl    ; 把上条指令运算结果edx中的低8位dl保存到ds:[si]中\r\n                      ; 这里不需要保存整个edx, 因为edx的高24位一定等于0\r\n   add si, 1\r\n   mov ebx, eax       ; 更新被除数\r\n   cmp eax, 0         ; 若商≠0则...\r\n   jne again          ; ==>again\r\ndone:   \r\n   mov byte ptr ds:[si], 0 ; 在字符串末尾填入结束标志'\\0'\r\n   mov di, si\r\n   sub di, 1               ; ds:di -> s的末元素\r\n   mov si, offset s        ; ds:si -> s的首元素\r\n   ;#1_begin------------------\r\n                           ;<--第1空, 请把解答写在分号左边, 可填多条指令\r\n\r\n\r\n   ;#1_end====================   \r\noutput:\r\n   mov si, offset s\r\noutput_next:   \r\n   mov ah, 2\r\n   mov dl, ds:[si]\r\n   cmp dl, 0\r\n   je exit\r\n   int 21h\r\n   add si, 1\r\n   jmp output_next\r\nexit:  \r\n   mov ah, 4Ch\r\n   mov al, 0\r\n   int 21h\r\ncode ends\r\nend main\r\n"
+        },
+        "timeLimit": 10000
+      },
+      "answerVisible": false
+    },
+    "deadline": "1970-01-01T00:00:00Z",
+    "title": "practice_asm_多文件程序填空题_用两头对称交换法倒置一个字符串",
+    "content": "这是一个多文件编程题的样例。请在这里写题目描述。\n",
+    "type": "MULTIPLE_FILE",
+    "author": "blackwhite",
+    "difficulty": 0,
+    "compiler": "NO_COMPILER",
+    "problemStatus": "PRIVATE",
+    "lastSubmissionId": "0",
+    "solution": "",
+    "problemSetId": "2041877552364560384",
+    "problemId": "1986417589062193152",
+    "description": "\n$\\huge{\\color{#00C000}1.}$ $\\large\\texttt{本题题型: 程序填空(共1空)}$\n$\\huge{\\color{#00C000}2.}$ $\\large\\texttt{代码描述}$\n用两头对称交换法把数组$\\color{C00000}s$的内容进行倒置，使得程序能输出$\\color{008080}EBX$的十进制值。\n$\\huge{\\color{#00C000}3.}$ $\\large\\texttt{举例}$\n$\\large\\char\"2460$ 设$\\color{#C00000}\\tt{EBX=7FFFFFFFh}$\n则应该输出\n$$\n\\hspace{4em}\\color{#C00000}{\\large\\texttt{2147483647}}\n$$\n\n$\\large\\char\"2461$ 设$\\color{#C00000}\\tt{EBX=12345678}$\n则应该输出\n$$\n\\hspace{4em}\\color{#C00000}{\\large\\texttt{12345678}}\n$$\n\n$\\huge{\\color{#00C000}4.}$ $\\large\\texttt{注意事项}$\n$\\large\\char\"2460$  请在$\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$之间补充代码，不可删除$\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$标记\n$\\large\\char\"2461$  $\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$之间允许写多条指令\n\n\n$\\huge{\\color{#00C000}5.}$ ${\\large\\texttt{提交步骤}}$\n$\\large\\char\"2460$ 复制以下源程序内容\n```x86asm\n.386\ndata segment use16\ns db 10 dup(' '), 0\ndata ends\n\ncode segment use16\nassume cs:code, ds:data\nmain:\n   mov ax, seg s      ; seg s表示s的段地址\n   mov ds, ax         ; ds=数组s的段地址\n   mov si, offset s   ; offset s表示s的偏移地址\n   mov ebx, 7FFFFFFFh ; ebx=待转化的32位数，其值在评测时会改变\n   mov ebp, 10        ; ebp = 除数\nagain:   \n   mov edx, 0         ; 清除64位被除数(由edx、eax拼接)的高32位\n   mov eax, ebx       ; eax=64位被除数的低32位\n   div ebp            ; edx、eax / ebp = eax..edx, 商为eax, 余数为edx\n   add edx, '0'       ; 把edx中的余数转化成数字字符, 例如7转化成'7'\n   mov ds:[si], dl    ; 把上条指令运算结果edx中的低8位dl保存到ds:[si]中\n                      ; 这里不需要保存整个edx, 因为edx的高24位一定等于0\n   add si, 1\n   mov ebx, eax       ; 更新被除数\n   cmp eax, 0         ; 若商≠0则...\n   jne again          ; ==>again\ndone:   \n   mov byte ptr ds:[si], 0 ; 在字符串末尾填入结束标志'\\0'\n   mov di, si\n   sub di, 1               ; ds:di -> s的末元素\n   mov si, offset s        ; ds:si -> s的首元素\n   ;#1_begin------------------\n                           ;<--第1空, 请把解答写在分号左边, 可填多条指令\n\n\n   ;#1_end====================   \noutput:\n   mov si, offset s\noutput_next:   \n   mov ah, 2\n   mov dl, ds:[si]\n   cmp dl, 0\n   je exit\n   int 21h\n   add si, 1\n   jmp output_next\nexit:  \n   mov ah, 4Ch\n   mov al, 0\n   int 21h\ncode ends\nend main\n```\n$\\large\\char\"2461$ 在桌面空白处，点右键$\\rightarrow$新建$\\rightarrow$文本文档，并把此文件重命名设为$\\underline{\\color{008080}s.asm}$\n$\\large\\char\"2462$ 用$\\color{C00000}editplus$打开$s.asm$\n$\\large\\char\"2463$ 把步骤$\\large\\char\"2460$复制的内容粘贴到$editplus$内\n$\\large\\char\"2464$ 在$editplus$中对代码进行完善，注意完善代码时切勿删除$\\color{#C000C0}\\underline{;\\#n\\_begin}$、$\\color{#C000C0}\\underline{;\\#n\\_end}$标记\n$\\large\\char\"2465$ 保存$s.asm$并在$XP$或$Bochs$虚拟机中编译、调试$s.asm$\n$\\large\\char\"2466$ 复制$s.asm$的内容到提交框内，点“$\\underline{\\color{C00000}\\tt{提交本题作答}}$”按钮 \n",
+    "problemPoolIndex": 1,
+    "indexInProblemPool": 1,
+    "authorOrganizationId": "1"
+  },
+  {
+    "id": "2041877778837065729",
+    "label": "",
+    "score": 10,
+    "problemConfig": {
+      "solutionVisible": false,
+      "multipleFileProblemConfig": {
+        "memoryLimit": 32768,
+        "cpuCount": 1,
+        "template": "GENERAL",
+        "files": [
+          {
+            "path": "main.sh",
+            "directory": false
+          },
+          {
+            "path": "src/",
+            "directory": true
+          },
+          {
+            "path": "src/main.asm",
+            "directory": false
+          }
+        ],
+        "judgeZip": "e73182a0-4031-4b28-aa17-41d61ce50910.zip",
+        "originalScore": 10,
+        "compiles": [
+          "GCC"
+        ],
+        "tools": [],
+        "withLocalhostNetwork": false,
+        "fileContents": {
+          "src/main.asm": "data segment\r\nc    db 0\r\nrows dw 0\r\nspaces_on_this_row dw 0\r\ndigits_on_this_row dw 0\r\ndata ends\r\n\r\ncode segment\r\nassume cs:code, ds:data\r\nmain:\r\n   mov ax, data\r\n   mov ds, ax\r\n   mov ah, 1\r\n   int 21h       ; AL=getchar()\r\n   mov [c], al   ; 保存输入的字符到变量c中\r\n   sub al, '0'   ; 把输入的数字字符脱掉引号\r\n   mov ah, 0     ; AX的高8位清零\r\n   mov [rows], ax; 总共需要输出的行数保存到变量rows中\r\n   dec ax        ; ax--\r\n   mov [spaces_on_this_row], ax; 首行需要输出的空格的个数\r\n   mov [digits_on_this_row], 1 ; 首行需要输出的数字的个数\r\n   cmp [rows], 0\r\n   je exit\r\n   mov ah, 2\r\n   mov dl, 0Dh\r\n   int 21h; 输出回车\r\n   mov ah, 2\r\n   mov dl, 0Ah\r\n   int 21h; 输出换行\r\n;#1_begin-------------------\r\n                           ;<--第1空, 请把解答写在分号左边, 可填多条指令\r\n                           \r\n                           \r\n;#1_end=====================\r\nexit:\r\n   mov ah, 4Ch\r\n   int 21h\r\ncode ends\r\nend main\r\n"
+        },
+        "timeLimit": 10000
+      },
+      "answerVisible": false
+    },
+    "deadline": "1970-01-01T00:00:00Z",
+    "title": "practice_asm_多文件程序填空题_003_金字塔",
+    "content": "# 一. 题目描述\n本题要求从键盘输入一个字符c，再输出\n$n$层金字塔，其中$n=c-'0'$，首层空格数=$n-1$，后续\n各层空格数逐层减1，首层字符数$=1$，后续各层字符数\n逐层加2，每层输出的字符均固定为$c$。\n输出字符请调用$int ~21h$的$2$号功能，不能通过写显卡\n地址实现字符输出。另外，输出最后一层时也需要在\n末尾输出$0Dh$及$0Ah$。\n例如：输入$5$，则应该输出\n```\n    5\n   555\n  55555\n 5555555\n555555555\n```\n# 二. 提交步骤\n下载zip题目包，解压缩，对$src/main.c$进行完善，选中$main.sh$及$src$目录$\\rightarrow$右键$\\rightarrow$压缩成$submit.zip$文件，提交$submit.zip$。\n\n\n\n\n",
+    "type": "MULTIPLE_FILE",
+    "author": "blackwhite",
+    "difficulty": 0,
+    "compiler": "NO_COMPILER",
+    "problemStatus": "PRIVATE",
+    "lastSubmissionId": "0",
+    "solution": "",
+    "problemSetId": "2041877552364560384",
+    "problemId": "1643124992235429888",
+    "description": "\n$\\huge{\\color{#00C000}1.}$ $\\large\\texttt{本题题型: 程序填空(共1空)}$\n$\\huge{\\color{#00C000}2.}$ $\\large\\texttt{代码描述}$\n$\\large\\char\"2460$ 本题要求从键盘输入一个字符$\\color{C00000}c$，再输出$\\color{008080}n$层金字塔\n\n$\\large\\char\"2461$ 其中$\\color{C00000}\\underline{\\tt{n=c-'\\!0'}}$\n\n$\\large\\char\"2462$ 假设金字塔顶层编号为$0$，那么第$i$层输出的空格数为$\\underline{space\\_count_i=n-1-i}$，第$i$层输出的字符$\\color{C00000}c$的个数为$\\underline{char\\_count_i=2*i+1}$\n\n$\\large\\char\"2463$ 每层末尾均必须按顺序输出$\\color{C00000}0Dh$、$\\color{C00000}0Ah$\n\n$\\large\\char\"2464$ 输出字符请调用$\\color{C00000}\\underline{int ~21h}$的$\\color{008080}2$号功能\n\n$\\huge{\\color{#00C000}3.}$ $\\large\\texttt{举例}$\n若输入\n$\\large\\color{C00000}\\tt\\underline{5}$<br>\n则应该输出\n$\\large\\tt\\char\"23B5\\char\"23B5\\char\"23B5\\char\"23B5{}5$\n$\\large\\tt\\char\"23B5\\char\"23B5\\char\"23B5{}555$\n$\\large\\tt\\char\"23B5\\char\"23B5{}55555$\n$\\large\\tt\\char\"23B5{}5555555$\n$\\large\\tt{}555555555$\n\n$\\huge{\\color{#00C000}4.}$ $\\large\\texttt{注意事项}$\n$\\large\\char\"2460$  请在$\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$之间补充代码，不可删除$\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$标记\n$\\large\\char\"2461$  $\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$之间允许写多条指令\n\n\n$\\huge{\\color{#00C000}5.}$ ${\\large\\texttt{提交步骤}}$\n$\\large\\char\"2460$ 复制以下源程序内容\n```x86asm\ndata segment\nc    db 0\nrows dw 0\nspaces_on_this_row dw 0\ndigits_on_this_row dw 0\ndata ends\n\ncode segment\nassume cs:code, ds:data\nmain:\n   mov ax, data\n   mov ds, ax\n   mov ah, 1\n   int 21h       ; AL=getchar()\n   mov [c], al   ; 保存输入的字符到变量c中\n   sub al, '0'   ; 把输入的数字字符脱掉引号\n   mov ah, 0     ; AX的高8位清零\n   mov [rows], ax; 总共需要输出的行数保存到变量rows中\n   dec ax        ; ax--\n   mov [spaces_on_this_row], ax; 首行需要输出的空格的个数\n   mov [digits_on_this_row], 1 ; 首行需要输出的数字的个数\n   cmp [rows], 0\n   je exit\n   mov ah, 2\n   mov dl, 0Dh\n   int 21h; 输出回车\n   mov ah, 2\n   mov dl, 0Ah\n   int 21h; 输出换行\n;#1_begin-------------------\n                           ;<--第1空, 请把解答写在分号左边, 可填多条指令\n                           \n                           \n;#1_end=====================\nexit:\n   mov ah, 4Ch\n   int 21h\ncode ends\nend main\n```\n$\\large\\char\"2461$ 在桌面空白处，点右键$\\rightarrow$新建$\\rightarrow$文本文档，并把此文件重命名设为$\\underline{\\color{008080}s.asm}$\n$\\large\\char\"2462$ 用$\\color{C00000}editplus$打开$s.asm$\n$\\large\\char\"2463$ 把步骤$\\large\\char\"2460$复制的内容粘贴到$editplus$内\n$\\large\\char\"2464$ 在$editplus$中对代码进行完善，注意完善代码时切勿删除$\\color{#C000C0}\\underline{;\\#n\\_begin}$、$\\color{#C000C0}\\underline{;\\#n\\_end}$标记\n$\\large\\char\"2465$ 保存$s.asm$并在$XP$或$Bochs$虚拟机中编译、调试$s.asm$\n$\\large\\char\"2466$ 复制$s.asm$的内容到提交框内，点“$\\underline{\\color{C00000}\\tt{提交本题作答}}$”按钮 \n\n\n",
+    "problemPoolIndex": 2,
+    "indexInProblemPool": 1,
+    "authorOrganizationId": "1"
+  },
+  {
+    "id": "2041877778837065730",
+    "label": "",
+    "score": 10,
+    "problemConfig": {
+      "solutionVisible": false,
+      "multipleFileProblemConfig": {
+        "memoryLimit": 32768,
+        "cpuCount": 1,
+        "template": "GENERAL",
+        "files": [
+          {
+            "path": "main.sh",
+            "directory": false
+          },
+          {
+            "path": "src/",
+            "directory": true
+          },
+          {
+            "path": "src/main.asm",
+            "directory": false
+          }
+        ],
+        "judgeZip": "175f3cbe-6e80-4f93-b478-35869691d020.zip",
+        "originalScore": 10,
+        "compiles": [
+          "GCC"
+        ],
+        "tools": [
+          "MAKE"
+        ],
+        "withLocalhostNetwork": false,
+        "fileContents": {
+          "src/main.asm": "data segment\r\nsth db 10h dup(0)\r\ns db \"abc123\", 0; 此数组的内容在judge时会发生变化\r\ndata ends\r\n\r\ncode segment\r\nassume cs:code, ds:data\r\nmain:\r\n   mov ax, seg s\r\n   mov ds, ax\r\n;#1_begin-------------------------\r\n                                 ;<--第1空, 请把解答写在分号左边, 可填多条指令\r\n                                 \r\n;#1_end===========================\r\nexit:\r\n   mov ah, 4Ch\r\n   mov al, 0\r\n   int 21h\r\ncode ends\r\nend main\r\n\r\n"
+        },
+        "timeLimit": 31000
+      },
+      "answerVisible": false
+    },
+    "deadline": "1970-01-01T00:00:00Z",
+    "title": "practice_asm_多文件_函数_004_逆序输出一个字符串",
+    "content": "这是一个多文件编程题的样例。请在这里写题目描述。\n",
+    "type": "MULTIPLE_FILE",
+    "author": "blackwhite",
+    "difficulty": 0,
+    "compiler": "NO_COMPILER",
+    "problemStatus": "PRIVATE",
+    "lastSubmissionId": "0",
+    "solution": "",
+    "problemSetId": "2041877552364560384",
+    "problemId": "1837740241306267648",
+    "description": "\n$\\huge{\\color{#00C000}1.}$ $\\large\\texttt{本题题型: 程序填空(共1空)}$\n$\\huge{\\color{#00C000}2.}$ $\\large\\texttt{代码描述}$\n$\\large\\char\"2460$ 已知数组$\\color{#C00000}s$中存储了一个符合$C$语言标准的字符串(末尾有一个ASCII码等于0的字符)，请在$\\color{008080}\\large\\underline{\\tt{;\\#1\\_begin}}$ $\\tt{与}$ $\\color{008080}\\large\\underline{\\tt{;\\#1\\_end}}$之间填写代码，按逆序输出$\\color{#C00000}s$中的字符。\n$\\large\\char\"2461$ 例如：设$\\color{#C00000}s$的内容为$\\underline{\\color{#C00000}\\large\\mathtt{abc123}}$ ，则应该输出$\\underline{\\color{#800080}\\large\\mathtt{321cba}}$   \n$\\large\\char\"2462$ 输出字符请调用$\\color{C00000}\\underline{int ~21h}$的$\\color{008080}2$号功能\n\n$\\huge{\\color{#00C000}3.}$ $\\large\\texttt{提示}$\n$\\large{可能会用到的指令：}$\n$\\char\"2460$ $\\tt{je\\enspace{}target} $      $\\,\\color{008080};若相等(equal)则跳到target$\n$\\char\"2461$ $\\tt{jne\\enspace{}target} $    $\\color{008080};若不等(not~ equal)则跳到target$\n$\\char\"2462$ $\\tt{jmp\\enspace{}target} $    $\\color{008080};无条件跳到target$\n$\\char\"2463$ $\\tt{jge\\enspace{}target} $   $\\,\\color{008080};若大于等于(greater~or~equal)则跳到target$\n$\\char\"2464$ $\\tt{jle\\enspace{}target} $   $\\,\\color{008080};若小于等于(less~or~equal)则跳到target$\n$\\char\"2465$ $\\tt{jg\\enspace{}target} $     $\\,\\color{008080};若大于(greater)则跳到target$\n$\\char\"2466$ $\\tt{jl\\enspace{}target} $     $\\,\\color{008080};若小于(less)则跳到target$\n$\\char\"2467$ $\\tt{sub\\enspace{}bx,\\enspace{}1} $     $\\,\\color{008080};\\,bx = bx - 1$\n\n$\\huge{\\color{#00C000}4.}$ $\\large\\texttt{注意事项}$\n$\\large\\char\"2460$  请在$\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$之间补充代码，不可删除$\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$标记\n$\\large\\char\"2461$  $\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$之间允许写多条指令\n\n\n$\\huge{\\color{#00C000}5.}$ ${\\large\\texttt{提交步骤}}$\n$\\large\\char\"2460$ 复制以下源程序内容\n```x86asm\ndata segment\nsth db 10h dup(0)\ns db \"abc123\", 0; 此数组的内容在judge时会发生变化\ndata ends\n\ncode segment\nassume cs:code, ds:data\nmain:\n   mov ax, seg s\n   mov ds, ax\n;#1_begin-------------------------\n                                 ;<--第1空, 请把解答写在分号左边, 可填多条指令\n                                 \n;#1_end===========================\nexit:\n   mov ah, 4Ch\n   mov al, 0\n   int 21h\ncode ends\nend main\n```\n$\\large\\char\"2461$ 在桌面空白处，点右键$\\rightarrow$新建$\\rightarrow$文本文档，并把此文件重命名设为$\\underline{\\color{008080}s.asm}$\n$\\large\\char\"2462$ 用$\\color{C00000}editplus$打开$s.asm$\n$\\large\\char\"2463$ 把步骤$\\large\\char\"2460$复制的内容粘贴到$editplus$内\n$\\large\\char\"2464$ 在$editplus$中对代码进行完善，注意完善代码时切勿删除$\\color{#C000C0}\\underline{;\\#n\\_begin}$、$\\color{#C000C0}\\underline{;\\#n\\_end}$标记\n$\\large\\char\"2465$ 保存$s.asm$并在$XP$或$Bochs$虚拟机中编译、调试$s.asm$\n$\\large\\char\"2466$ 复制$s.asm$的内容到提交框内，点“$\\underline{\\color{C00000}\\tt{提交本题作答}}$”按钮 \n",
+    "problemPoolIndex": 3,
+    "indexInProblemPool": 1,
+    "authorOrganizationId": "1"
+  },
+  {
+    "id": "2041877778837065731",
+    "label": "",
+    "score": 10,
+    "problemConfig": {
+      "solutionVisible": false,
+      "multipleFileProblemConfig": {
+        "memoryLimit": 32768,
+        "cpuCount": 1,
+        "template": "GENERAL",
+        "files": [
+          {
+            "path": "main.sh",
+            "directory": false
+          },
+          {
+            "path": "src/",
+            "directory": true
+          },
+          {
+            "path": "src/main.asm",
+            "directory": false
+          }
+        ],
+        "judgeZip": "8ac976b3-9e2c-4aab-a327-b28656ec4795.zip",
+        "originalScore": 10,
+        "compiles": [
+          "GCC"
+        ],
+        "tools": [],
+        "withLocalhostNetwork": false,
+        "fileContents": {
+          "src/main.asm": "data segment\r\nsth db 10h dup(0)\r\ns db 100h dup('S')\r\nt db 100h dup('T')\r\ndata ends\r\ncode segment\r\nassume cs:code, ds:data\r\nmain:\r\n   mov ax, data\r\n   mov ds, ax\r\n   mov bx, 0\r\ninput_next:\r\n   mov ah, 1\r\n   int 21h; AL=getchar()\r\n   cmp al, 0Dh; 判断是否为回车键\r\n   je input_done\r\n   mov s[bx], al\r\n   add bx, 1                     \r\n   jmp input_next\r\ninput_done:\r\n   mov s[bx], 0\r\n;#1_begin------------------------\r\n                                ;<--第1空, 请把解答写在分号左边, 可填多条指令\r\n                                \r\n;#1_end==========================\r\nexit:\r\n   mov ah, 4Ch\r\n   int 21h\r\ncode ends\r\nend main\r\n"
+        },
+        "timeLimit": 31000
+      },
+      "answerVisible": false
+    },
+    "deadline": "1970-01-01T00:00:00Z",
+    "title": "practice_asm_多文件_函数_006_输入一行字符串提取16进制字符",
+    "content": "# 一. 题目描述\n从键盘输入一行字符串并保存到数组$\\color{#C00000}s$中，再从数组$s$中按从左到右顺序提取16进制字符并保存到数组$\\color{#C00000}t$中，其中16进制字符是指以下这些字符：\n$\\hspace{4em}\\color{008080}[\\tt{'A', ~'F'}]$\n$\\hspace{4em}\\color{008080}[\\tt{'a', ~'f'}]$\n$\\hspace{4em}\\color{008080}[\\tt{'0', ~'9'}]$\n在提取及保存过程中，请注意以下2个规则:\n$\\large\\char\"2460$若遇到小写字母则必须先转化成大写再保存到$t$中\n$\\large\\char\"2461$$s$及$t$中的字符串均必须用$00h$字符(即C语言中的'\\0'字符)结束\n例如：输入$\\underline{\\color{#C00000}\\large\\mathtt{abcXEYfZ123\\char\"24\\,\\^{}\\,\\#@}}$ ，则数组t中应该存放$\\underline{\\color{#800080}\\large\\mathtt{ABCEF123}}$                       \n# 二. 提交步骤\n下载zip题目包，解压缩，对$src/main.c$进行完善，选中$main.sh$及$src$目录$\\rightarrow$右键$\\rightarrow$压缩成$submit.zip$文件，提交$submit.zip$。\n\n",
+    "type": "MULTIPLE_FILE",
+    "author": "blackwhite",
+    "difficulty": 0,
+    "compiler": "NO_COMPILER",
+    "problemStatus": "PRIVATE",
+    "lastSubmissionId": "0",
+    "solution": "",
+    "problemSetId": "2041877552364560384",
+    "problemId": "1770126123344818176",
+    "description": "\n$\\huge{\\color{#00C000}1.}$ $\\large\\texttt{本题题型: 程序填空(共1空)}$\n$\\huge{\\color{#00C000}2.}$ $\\large\\texttt{代码描述}$\n从键盘输入一行字符串并保存到数组$\\color{#C00000}s$中，再从数组$s$中按从左到右顺序提取十六进制字符并保存到数组$\\color{#C00000}t$中，其中十六进制字符是指以下这些字符：\n$\\hspace{4em}\\color{008080}[\\tt{'A', ~'F'}]$\n$\\hspace{4em}\\color{008080}[\\tt{'a', ~'f'}]$\n$\\hspace{4em}\\color{008080}[\\tt{'0', ~'9'}]$\n在提取及保存过程中，请注意以下2个规则:\n$\\large\\char\"2460$若遇到小写字母则必须先转化成大写再保存到$t$中\n$\\large\\char\"2461$$s$及$t$中的字符串均必须用$00h$字符(即C语言中的'\\0'字符)结束\n例如：输入$\\underline{\\color{#C00000}\\large\\mathtt{abcXEYfZ123\\char\"24\\,\\^{}\\,\\#@}}$ ，则数组t中应该存放$\\underline{\\color{#800080}\\large\\mathtt{ABCEF123}}$            \n\n\n\n$\\huge{\\color{#00C000}3.}$ $\\large\\texttt{注意事项}$\n$\\large\\char\"2460$  请在$\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$之间补充代码，不可删除$\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$标记\n$\\large\\char\"2461$  $\\color{#C000C0}\\underline{\\#n\\_begin}$和$\\color{#C000C0}\\underline{\\#n\\_end}$之间允许写多条指令\n\n\n$\\huge{\\color{#00C000}4.}$ ${\\large\\texttt{提交步骤}}$\n$\\large\\char\"2460$ 复制以下源程序内容\n```x86asm\ndata segment\nsth db 10h dup(0)\ns db 100h dup('S')\nt db 100h dup('T')\ndata ends\ncode segment\nassume cs:code, ds:data\nmain:\n   mov ax, data\n   mov ds, ax\n   mov bx, 0\ninput_next:\n   mov ah, 1\n   int 21h; AL=getchar()\n   cmp al, 0Dh; 判断是否为回车键\n   je input_done\n   mov s[bx], al\n   add bx, 1                     \n   jmp input_next\ninput_done:\n   mov s[bx], 0\n;#1_begin------------------------\n                                ;<--第1空, 请把解答写在分号左边, 可填多条指令\n                                \n;#1_end==========================\nexit:\n   mov ah, 4Ch\n   int 21h\ncode ends\nend main\n```\n$\\large\\char\"2461$ 在桌面空白处，点右键$\\rightarrow$新建$\\rightarrow$文本文档，并把此文件重命名设为$\\underline{\\color{008080}s.asm}$\n$\\large\\char\"2462$ 用$\\color{C00000}editplus$打开$s.asm$\n$\\large\\char\"2463$ 把步骤$\\large\\char\"2460$复制的内容粘贴到$editplus$内\n$\\large\\char\"2464$ 在$editplus$中对代码进行完善，注意完善代码时切勿删除$\\color{#C000C0}\\underline{;\\#n\\_begin}$、$\\color{#C000C0}\\underline{;\\#n\\_end}$标记\n$\\large\\char\"2465$ 保存$s.asm$并在$XP$或$Bochs$虚拟机中编译、调试$s.asm$\n$\\large\\char\"2466$ 复制$s.asm$的内容到提交框内，点“$\\underline{\\color{C00000}\\tt{提交本题作答}}$”按钮 \n\n",
+    "problemPoolIndex": 4,
+    "indexInProblemPool": 1,
+    "authorOrganizationId": "1"
+  }
+]

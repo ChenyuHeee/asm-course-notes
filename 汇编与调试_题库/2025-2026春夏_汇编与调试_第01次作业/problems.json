@@ -1,0 +1,116 @@
+[
+  {
+    "id": "2031734034820210688",
+    "label": "",
+    "score": 10,
+    "problemConfig": {
+      "solutionVisible": false,
+      "multipleFileProblemConfig": {
+        "memoryLimit": 32768,
+        "cpuCount": 1,
+        "template": "GENERAL",
+        "files": [
+          {
+            "path": "main.sh",
+            "directory": false
+          },
+          {
+            "path": "src/",
+            "directory": true
+          },
+          {
+            "path": "src/main.asm",
+            "directory": false
+          }
+        ],
+        "judgeZip": "14b1dcc8-4392-4bf3-b0d2-98e7d4cfdf7b.zip",
+        "originalScore": 10,
+        "compiles": [
+          "GCC"
+        ],
+        "tools": [
+          "MAKE"
+        ],
+        "withLocalhostNetwork": false,
+        "fileContents": {
+          "src/main.asm": ".386\r\ncode segment use16\r\nassume cs:code\r\nmain:\r\n   mov ax, -2; ax的值在评测时会发生改变\r\n   ;#1_begin--------------------------------------\r\n\r\n   ;#1_end========================================\r\nexit:\r\n   mov ah, 4Ch\r\n   int 21h\r\ncode ends\r\nend main\r\n"
+        },
+        "timeLimit": 31000
+      },
+      "answerVisible": false
+    },
+    "deadline": "1970-01-01T00:00:00Z",
+    "title": "practice_asm_编程题_AX为正时计算2*AX否则计算AX的平方",
+    "content": "这是一个多文件编程题的样例。请在这里写题目描述。\n",
+    "type": "MULTIPLE_FILE",
+    "author": "blackwhite",
+    "difficulty": 0,
+    "compiler": "NO_COMPILER",
+    "problemStatus": "PRIVATE",
+    "lastSubmissionId": "0",
+    "solution": "",
+    "problemSetId": "2031733875187355648",
+    "problemId": "1973296465980293120",
+    "description": "\n$\\huge{\\color{#00C000}1.}$ $\\large\\texttt{本题题型: 编程题}$\n$\\huge{\\color{#00C000}2.}$ $\\large\\texttt{代码描述}$\n$\\large\\char\"2460$  已知寄存器$\\color{C00000}AX$中保存了一个符号数\n$\\large\\char\"2461$  若$AX\\geqslant{}0$则计算$AX=2\\times{}AX$\n$\\large\\char\"2462$  若$AX<0$则计算$AX=AX^2$\n  \n$\\huge{\\color{#00C000}3.}$ $\\large\\texttt{举例}$\n$\\large\\char\"2460$ 若\n$\\hspace{4em}\\color{#C00000}\\tt{AX=5}$\n则\n$\\hspace{4em}\\color{#C00000}\\tt{AX=000Ah}$\n$\\large\\char\"2461$ 若\n$\\hspace{4em}\\color{#C00000}\\tt{AX=-3}$\n则\n$\\hspace{4em}\\color{#C00000}\\tt{AX=0009h}$\n\n$\\huge{\\color{#00C000}4.}$ $\\large\\texttt{注意事项}$\n请在$\\color{#C000C0}\\underline{;\\#1\\_begin}$与$\\color{#C000C0}\\underline{;\\#1\\_end}$之间补充代码，不可删除$\\color{#C000C0}\\underline{;\\#1\\_begin}$、$\\color{#C000C0}\\underline{;\\#1\\_end}$标记\n\n\n$\\huge{\\color{#00C000}5.}$ ${\\large\\texttt{提交步骤}}$\n$\\large\\char\"2460$ 复制以下源程序内容\n```x86asm\n.386\ncode segment use16\nassume cs:code\nmain:\n   mov ax, -2; ax的值在评测时会发生改变\n   ;#1_begin--------------------------------------\n\n   ;#1_end========================================\nexit:\n   mov ah, 4Ch\n   int 21h\ncode ends\nend main\n```\n$\\large\\char\"2461$ 在桌面空白处，点右键$\\rightarrow$新建$\\rightarrow$文本文档，并把此文件重命名设为$\\underline{\\color{008080}s.asm}$\n$\\large\\char\"2462$ 用$\\color{C00000}editplus$打开$s.asm$\n$\\large\\char\"2463$ 把步骤$\\large\\char\"2460$复制的内容粘贴到$editplus$内\n$\\large\\char\"2464$ 在$editplus$中对代码进行完善，注意完善代码时切勿删除$\\color{#C000C0}\\underline{;\\#1\\_begin}$、$\\color{#C000C0}\\underline{;\\#1\\_end}$标记\n$\\large\\char\"2465$ 保存$s.asm$并在$XP$或$Bochs$虚拟机中编译、调试$s.asm$\n$\\large\\char\"2466$ 复制$s.asm$的内容到提交框内，点“$\\underline{\\color{C00000}\\tt{提交本题作答}}$”按钮 \n\n",
+    "problemPoolIndex": 1,
+    "indexInProblemPool": 1,
+    "authorOrganizationId": "1"
+  },
+  {
+    "id": "2031734034820210689",
+    "label": "",
+    "score": 10,
+    "problemConfig": {
+      "solutionVisible": false,
+      "multipleFileProblemConfig": {
+        "memoryLimit": 32768,
+        "cpuCount": 1,
+        "template": "GENERAL",
+        "files": [
+          {
+            "path": "main.sh",
+            "directory": false
+          },
+          {
+            "path": "src/",
+            "directory": true
+          },
+          {
+            "path": "src/main.asm",
+            "directory": false
+          }
+        ],
+        "judgeZip": "f47cd70b-360c-4c41-85b8-e8961b690771.zip",
+        "originalScore": 10,
+        "compiles": [
+          "GCC"
+        ],
+        "tools": [
+          "MAKE"
+        ],
+        "withLocalhostNetwork": false,
+        "fileContents": {
+          "src/main.asm": ".386\r\ncode segment use16\r\nassume cs:code\r\nmain:\r\n   mov cx, 5; cx的值在评测时会发生改变\r\n   ;#1_begin--------------------------------------\r\n\r\n   ;#1_end========================================\r\nexit:\r\n   mov ah, 4Ch\r\n   int 21h\r\ncode ends\r\nend main\r\n"
+        },
+        "timeLimit": 31000
+      },
+      "answerVisible": false
+    },
+    "deadline": "1970-01-01T00:00:00Z",
+    "title": "practice_asm_编程题_判断素数",
+    "content": "这是一个多文件编程题的样例。请在这里写题目描述。\n",
+    "type": "MULTIPLE_FILE",
+    "author": "blackwhite",
+    "difficulty": 0,
+    "compiler": "NO_COMPILER",
+    "problemStatus": "PRIVATE",
+    "lastSubmissionId": "0",
+    "solution": "",
+    "problemSetId": "2031733875187355648",
+    "problemId": "1973334813004398592",
+    "description": "\n$\\huge{\\color{#00C000}1.}$ $\\large\\texttt{本题题型: 编程题}$\n$\\huge{\\color{#00C000}2.}$ $\\large\\texttt{代码描述}$\n已知寄存器$\\color{C00000}CX$中保存了一个正整数，且$CX\\in[0, 32767]$，请模仿以下$C$语言代码写一个汇编语言程序判断$CX$是否为素数，若是则$\\color{008080}\\tt{AX=1}$，否则$\\color{008080}\\tt{AX=0}$：\n```c\nbx = 2;\nagain:\nif(bx < cx)\n{\n   if(cx % bx == 0)\n      goto check;\n   bx = bx + 1;\n   goto again;\n}\ncheck:\nif(bx == cx)\n   ax = 1;\nelse\n   ax = 0;\n```\n\n$\\huge{\\color{#00C000}3.}$ $\\large\\texttt{举例}$\n$\\large\\char\"2460$ 若\n$\\hspace{4em}\\color{#C00000}\\tt{CX=5}$\n则\n$\\hspace{4em}\\color{#C00000}\\tt{AX=1}$\n$\\large\\char\"2461$ 若\n$\\hspace{4em}\\color{#C00000}\\tt{CX=9}$\n则\n$\\hspace{4em}\\color{#C00000}\\tt{AX=0}$\n\n$\\huge{\\color{#00C000}4.}$ $\\large\\texttt{提示}$\n$\\large\\char\"2460$ $16位/8位$ 除法举例\n```x86asm\nmov ax, 123h\nmov bl, 10h\ndiv bl ; 当除数为8位时，被除数默认为AX，故div bl就是计算 AX/BL=AL..AH，其中AL为商=12h，AH为余数=03h \n```\n\n$\\large\\char\"2461$ $32位/16位$ 除法举例\n```x86asm\nmov dx, 123h\nmov ax, 4567h\nmov bx, 1000h\ndiv bx ; 当除数为16位时，被除数默认为DX与AX组合而成的32位数，\n       ; 故div bx就是计算 (DX*0x10000+AX)/BX=AX..DX，\n       ; 其中AX为商=1234h，DX为余数=567h \n```\n\n$\\huge{\\color{#00C000}5.}$ $\\large\\texttt{注意事项}$\n请在$\\color{#C000C0}\\underline{;\\#1\\_begin}$与$\\color{#C000C0}\\underline{;\\#1\\_end}$之间补充代码，不可删除$\\color{#C000C0}\\underline{;\\#1\\_begin}$、$\\color{#C000C0}\\underline{;\\#1\\_end}$标记\n\n$\\huge{\\color{#00C000}6.}$ ${\\large\\texttt{提交步骤}}$\n$\\large\\char\"2460$ 复制以下源程序内容\n```x86asm\n.386\ncode segment use16\nassume cs:code\nmain:\n   mov cx, 5; cx的值在评测时会发生改变\n   ;#1_begin--------------------------------------\n\n   ;#1_end========================================\nexit:\n   mov ah, 4Ch\n   int 21h\ncode ends\nend main\n```\n$\\large\\char\"2461$ 在桌面空白处，点右键$\\rightarrow$新建$\\rightarrow$文本文档，并把此文件重命名设为$\\underline{\\color{008080}s.asm}$\n$\\large\\char\"2462$ 用$\\color{C00000}editplus$打开$s.asm$\n$\\large\\char\"2463$ 把步骤$\\large\\char\"2460$复制的内容粘贴到$editplus$内\n$\\large\\char\"2464$ 在$editplus$中对代码进行完善，注意完善代码时切勿删除$\\color{#C000C0}\\underline{;\\#1\\_begin}$、$\\color{#C000C0}\\underline{;\\#1\\_end}$标记\n$\\large\\char\"2465$ 保存$s.asm$并在$XP$或$Bochs$虚拟机中编译、调试$s.asm$\n$\\large\\char\"2466$ 复制$s.asm$的内容到提交框内，点“$\\underline{\\color{C00000}\\tt{提交本题作答}}$”按钮 \n",
+    "problemPoolIndex": 2,
+    "indexInProblemPool": 1,
+    "authorOrganizationId": "1"
+  }
+]
