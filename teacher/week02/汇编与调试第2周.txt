@@ -1,0 +1,202 @@
+1. 计算1+2
+C语言代码1.c:
+#include <stdio.h>
+main()
+{
+   int a, b;
+   a = 1;
+   b = 2;
+   a = a + b;
+}
+
+汇编代码1.asm:
+code segment
+assume cs:code
+main:
+   mov ax, 1
+   mov bx, 2
+   add ax, bx
+code ends
+end main
+
+
+2. 二分支结构
+C语言代码2.c:
+#include <stdio.h>
+main()
+{
+   int a=2, b=3, c;
+   if(a > b)
+      c = a;
+   else
+      c = b;
+}
+
+汇编代码2.asm:
+code segment
+assume cs:code
+main:
+   mov ax, 2
+   mov bx, 3
+   cmp ax, bx
+   jg ax_is_bigger; jg:jump if greater
+bx_is_bigger:
+   mov cx, bx
+   jmp done ;   goto done
+ax_is_bigger:
+   mov cx, ax
+done:   
+code ends
+end main
+
+
+   
+3. 求3个数的最大值
+C语言代码3.c:
+#include <stdio.h>
+#include <stdio.h>
+main()
+{
+   int a=1, b=2, c=3, d;
+   if(a > b)
+      if(a > c)
+         d = a;
+      else
+         d = c;
+   else
+      if(b > c)
+         d = b;
+      else
+         d = c;
+}
+
+汇编代码3.asm:
+code segment
+assume cs:code
+main:
+   mov ax, 1
+   mov bx, 2
+   mov cx, 3
+   cmp ax, bx
+   jg ax_is_bigger_than_bx
+   cmp bx, cx
+   jg bx_is_bigger_than_cx
+   mov dx, cx
+   jmp done
+bx_is_bigger_than_cx:
+   mov dx, bx
+   jmp done
+ax_is_bigger_than_bx:  
+   cmp ax, cx
+   jg ax_is_bigger_than_cx
+   mov dx, cx
+   jmp done
+ax_is_bigger_than_cx:
+   mov dx, ax
+done:   
+code ends
+end main
+
+
+4. 用循环计算1+2+3的和
+C语言代码4.c:
+#include <stdio.h>
+main()
+{
+   int a=1, b=0;
+   while(a <= 3)
+   {
+      b = b + a;
+      a = a + 1;
+   }
+}
+
+汇编代码4.asm:
+code segment
+assume cs:code
+main:
+   mov ax, 1
+   mov bx, 0
+again:   
+   cmp ax, 3
+   jg done
+   add bx, ax
+   add ax, 1
+   jmp again
+done:   
+code ends
+end main
+
+
+5. 用循环计算3+2+1的和
+C语言代码5.c:
+#include <stdio.h>
+main()
+{
+   int a=3, b=0;
+   while(a > 0)
+   {
+      b = b + a;
+      a = a - 1
+   }
+}
+汇编代码5.asm:
+code segment
+assume cs:code
+main:
+   mov ax, 3
+   mov bx, 0
+again:   
+   cmp ax, 0
+   jle done ; jump if less or equal
+   add bx, ax
+   sub ax, 1; ax=ax-1, sub:subtract
+   jmp again
+done:   
+code ends
+end main
+
+6. 用双重循环计算1!+2!+3!
+C语言代码6.c:
+#include <stdio.h>
+main()
+{
+   int a, b, c, d=0;
+   for(a=1; a<=3; a++)
+   {
+      c = 1;
+      for(b=1; b<=a; b++)
+      {
+         c = c * b;
+      }
+      d = d + c;
+   }
+}
+
+汇编代码6.asm:
+.386; 表示后续代码会用到386指令
+code segment use16 ; use16表示在编译时，代码涉及的地址仍旧使用16位而不是32位
+assume cs:code
+assume cs:code
+main:
+   mov dx, 0
+   mov ax, 1
+again:   
+   cmp ax, 3
+   jg done
+   mov cx, 1
+   mov bx, 1
+   next:   
+      cmp bx, ax
+      jg do_sum
+      imul cx, bx; cx=cx*bx
+      add bx, 1
+      jmp next
+do_sum:
+   add dx, cx
+   add ax, 1
+   jmp again
+done:
+   code ends
+end main
+

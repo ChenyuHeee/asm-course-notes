@@ -1,0 +1,7 @@
+Éèss=1000h, sp=100h
+
+ss:00F8 old bp (4) <- bp
+ss:00FA back (3) <- (5)
+ss:00FC 5  (2) <-sp(6)
+ss:00FE 3  (1)
+ss:0100    (7) 

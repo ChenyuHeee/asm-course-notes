@@ -1,0 +1,78 @@
+㈠ OllyDbg的快捷键:
+F2 设/取消断点(breakpoint)
+F7 跟踪进入(trace into), 当遇到call语句时, F7会跟踪到函数体内
+F8 单步执行(step over),当遇到call语句时, F8不会跟踪到函数体内
+   而是把call语句一步执行完毕并停在下条语句处
+ctrl+g 地址定位
+
+㈡ 自己电脑上要安装2个虚拟机软件:
+1. vmware+xp
+(1) vmware软件, 压缩包里面有sn.txt包含了注册码
+(2) xp.zip虚拟机的镜像, 需要用WinRar或7-zip解压缩
+    选中xp.zip点右键进行解压缩后会得到一个xp文件夹，
+    双击进入xp文件夹之后找到里面一个叫xp.vmx的文件，
+    双击它就可以启动xp虚拟机。
+    若找不到xp.vmx只看到一些xp文件，请按以下链接的
+    问题(3)解决: http://cc.zju.edu.cn/bhh/xpvm.htm
+    
+2. bochs
+(1) 下载链接:
+    http://cc.zju.edu.cn/bhh/bochs@bw.zip
+(2) 下载后把它拷到比如D:\
+    再把它解压缩得到 bochs@bw 文件
+    双击进入此文件夹，找到bochsdbg.exe，给它创建一个快捷方式，并把此快捷方式移到桌面上
+    找到 bochs@bw\DiskExplorer\editdisk.exe 也给它创建一个快捷方式并移到桌面上
+(3) 双击桌面上的bochs虚拟机快捷方式启动bochs虚拟机
+    load->d:\bochs@bw\dos.bxrc (虚拟机配置文件) -> start
+    选择任务栏中的"Bochs Enhanced Debugger"这个子窗口,
+    点击Continue让虚拟机继续运行-> 切换到bochs for windows这个子窗口->选择soft-ice敲回车
+
+㈢ 编程步骤
+1. 如何在xp虚拟机中编程
+(1) 先在物理机上新建一个1.asm, 设该文件的内容为:
+   code segment
+   assume cs:code
+   main:
+      mov ax, 1
+      add ax, 2
+      add ax, 3
+   code ends
+   end main
+(2) 编辑1.asm推荐使用工具软件editplus, 该软件安装步骤见以下链接之问题(0):
+   http://cc.zju.edu.cn/bhh/cprgtool.htm
+安装完成后, 还需要按以下链接下载"汇编语言加亮插件":
+   http://cc.zju.edu.cn/bhh/asm-syntax.rar
+把它解压缩后得到asm.stx文件并把此文件拷到editplus的安装文件夹内, 最后按
+以下链接所指的截图设置该语法插件:
+   http://cc.zju.edu.cn/bhh/asm-syntax.jpg
+
+(3) 把1.asm复制到xp虚拟机的D:\masm内
+    在xp中点 开始->运行->输入command回车
+    再输入
+       d:
+       cd \masm
+    其中cd表示change directory改变目录(即文件夹)
+    再输入以下编译及调试命令:
+       masm 1.asm;
+       link 1.obj;
+       td 1.exe
+       
+2. 如何在Bochs虚拟机中编程
+(1) 双击 桌面上的editdisk快捷方式, 运行这个虚拟机硬盘管理软件
+(2) 用该软件打开 bochs@bw\dos.img 这个虚拟机硬盘文件
+(3) 用拖放或者复制粘贴方式把物理机桌面上的 1.asm 复制到 虚拟硬盘的 \masm 文件夹内
+(4) 关闭editdisk
+(5) 双击桌面上的bochs虚拟机快捷方式启动bochs虚拟机
+    load->d:\bochs@bw\dos.bxrc (虚拟机配置文件) ->start
+    选择任务栏中的"Bochs Enhanced Debugger"这个子窗口,
+    点击Continue让虚拟机继续运行->
+    切换到bochs for windows这个子窗口
+    ->选择soft-ice敲回车
+(6) 输入以下命令进入c:\masm文件夹
+    cd \masm
+(7) 再输入以下编译调试命令
+       masm 1.asm;
+       link 1.obj;
+       td 1.exe 或 ldr 1.exe
+(8) 点Power按钮关闭Bochs虚拟机
+    

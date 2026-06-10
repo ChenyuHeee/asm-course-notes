@@ -1,0 +1,90 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: overflow - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\BLACKW~1\AppData\Local\Temp\RSP8801.tmp" with contents
+[
+/nologo /ML /W3 /GX /Od /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/overflow.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\vc\overflow\overflow.cpp"
+]
+Creating command line "cl.exe @C:\Users\BLACKW~1\AppData\Local\Temp\RSP8801.tmp" 
+Creating temporary file "C:\Users\BLACKW~1\AppData\Local\Temp\RSP8802.tmp" with contents
+[
+/nologo /ML /W3 /GX /Od /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/overflow.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\vc\overflow\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\Users\BLACKW~1\AppData\Local\Temp\RSP8802.tmp" 
+Creating temporary file "C:\Users\BLACKW~1\AppData\Local\Temp\RSP8803.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/overflow.pdb" /machine:I386 /out:"Release/overflow.exe" 
+.\Release\overflow.obj
+.\Release\StdAfx.obj
+]
+Creating command line "link.exe @C:\Users\BLACKW~1\AppData\Local\Temp\RSP8803.tmp"
+<h3>Output Window</h3>
+Compiling...
+StdAfx.cpp
+Compiling...
+overflow.cpp
+D:\vc\overflow\overflow.cpp(42) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(42) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(42) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(42) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(42) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(42) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(42) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(42) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(43) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(43) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(43) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(43) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(43) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(43) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(43) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(43) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(44) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(44) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(45) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(45) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(45) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(45) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(45) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(45) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(45) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(45) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(46) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(46) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(46) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(46) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(46) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(46) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(47) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(47) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(47) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(47) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(48) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(48) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(48) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(48) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(48) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(48) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(48) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(48) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(48) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(48) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(48) : warning C4305: 'initializing' : truncation from 'const int' to 'char'
+D:\vc\overflow\overflow.cpp(48) : warning C4309: 'initializing' : truncation of constant value
+D:\vc\overflow\overflow.cpp(58) : warning C4102: 'here' : unreferenced label
+Linking...
+
+
+
+<h3>Results</h3>
+overflow.exe - 0 error(s), 49 warning(s)
+</pre>
+</body>
+</html>
